@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nowy rozkład jazdy 2026/2027 | MMPK</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f9;
+            color: #202a36;
+            font-family: "DM Sans", Arial, sans-serif;
+            line-height: 1.65;
+        }
+
+        .topbar {
+            background: #102b46;
+            color: #d5e0eb;
+            font-size: 12px;
+            padding: 9px 20px;
+            letter-spacing: 0.4px;
+        }
+
+        .topbar-inner {
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        header {
+            background: #102b46;
+            color: white;
+            padding: 30px 20px 34px;
+        }
+
+        .header-inner {
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .brand {
+            font-family: "Manrope", sans-serif;
+            font-size: 29px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand span {
+            color: #e6b84b;
+        }
+
+        .brand-description {
+            margin-top: 7px;
+            color: #c3d2e0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #e4e9ef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: auto;
+            display: flex;
+            gap: 30px;
+            padding: 0 20px;
+            overflow-x: auto;
+        }
+
+        nav a {
+            display: block;
+            padding: 16px 0;
+            color: #34465a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #1769aa;
+        }
+
+        .page-container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 18px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 18px;
+            color: #1769aa;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        article {
+            background: white;
+            border: 1px solid #e8edf2;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(16,43,70,0.05);
+        }
+
+        .article-content {
+            padding: 32px 38px 38px;
+        }
+
+        .category {
+            display: inline-block;
+            background: #eaf2fa;
+            color: #1769aa;
+            padding: 6px 11px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+        }
+
+        h1 {
+            font-family: "Manrope", sans-serif;
+            color: #102b46;
+            font-size: 34px;
+            line-height: 1.25;
+            letter-spacing: -1px;
+            margin: 17px 0 12px;
+        }
+
+        .metadata {
+            color: #8290a0;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            display: block;
+            background: #dce4ec;
+        }
+
+        .lead {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #405267;
+            font-weight: 500;
+            margin: 25px 0;
+        }
+
+        .notice {
+            background: #fff8e9;
+            border-left: 4px solid #e6b84b;
+            padding: 15px 18px;
+            margin: 24px 0;
+            color: #5c4b29;
+            font-size: 14px;
+        }
+
+        h2 {
+            font-family: "Manrope", sans-serif;
+            color: #102b46;
+            font-size: 23px;
+            line-height: 1.35;
+            letter-spacing: -0.4px;
+            margin: 32px 0 10px;
+        }
+
+        h3 {
+            color: #1769aa;
+            font-size: 17px;
+            margin: 21px 0 7px;
+        }
+
+        p {
+            margin: 8px 0 13px;
+        }
+
+        .article-end {
+            border-top: 1px solid #e8edf2;
+            margin-top: 30px;
+            padding-top: 18px;
+            color: #8290a0;
+            font-size: 12px;
+        }
+
+        footer {
+            background: #102b46;
+            color: #bdcad7;
+            margin-top: 55px;
+            padding: 35px 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .footer-brand {
+            color: white;
+            font-family: "Manrope", sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .footer-brand span {
+            color: #e6b84b;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 25px 18px;
+            }
+
+            .brand {
+                font-size: 23px;
+            }
+
+            .article-content {
+                padding: 22px 19px 27px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            h2 {
+                font-size: 21px;
+            }
+
+            .article-image {
+                height: 230px;
+            }
+
+            .lead {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        NIEZALEŻNY PORTAL INFORMACYJNY O KOLEI
+    </div>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+        </div>
+        <div class="brand-description">
+            Kolejowe informacje. Bez zbędnych przystanków.
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html">STRONA GŁÓWNA</a>
+        <a href="aktualnosci.html" class="active">AKTUALNOŚCI</a>
+        <a href="mazowsze.html">MAZOWSZE</a>
+        <a href="mazury.html">WARMIA I MAZURY</a>
+        <a href="tabor.html">TABOR</a>
+    </div>
+</nav>
+
+<div class="page-container">
+
+    <a class="back-link" href="index.html">← Wróć do strony głównej</a>
+
+    <article>
+
+        <div class="article-content">
+
+            <span class="category">ROZKŁAD JAZDY</span>
+
+            <h1>
+                Nowy rozkład jazdy 2026/2027.
+                Co zmieni się na Mazowszu i Warmii i Mazurach?
+            </h1>
+
+            <div class="metadata">
+                22 LISTOPADA 2026 &nbsp; • &nbsp; AUTOR: WFK
+            </div>
+
+        </div>
+
+        <img
+            class="article-image"
+            src="https://cdn.wiadomosci.onet.pl/1/K91k9lLaHR0cDovL29jZG4uZXUvaW1hZ2VzL3B1bHNjbXMvTlRFN01EQV8vNTA2YjhkZTdhOGQwOGUyOThlNjVhMDNhYWQ3MmUwMjIuanBnkpUDzKgAzQgwzQSbkwXNCWDNBOzeAAKhMAehMQQ"
+            alt="Pociąg pasażerski"
+        >
+
+        <div class="article-content">
+
+            <p class="lead">
+                13 grudnia 2026 roku zacznie obowiązywać nowy roczny rozkład
+                jazdy pociągów. Zmiany obejmą połączenia dalekobieżne i regionalne.
+                Sprawdzamy najważniejsze zapowiedzi dotyczące Warszawy, Ełku,
+                Olsztyna i Szczytna.
+            </p>
+
+            <div class="notice">
+                <strong>WAŻNE:</strong> Nowy rozkład jazdy zacznie obowiązywać
+                13 grudnia 2026 roku. Godziny kursowania należy sprawdzać
+                w aktualnych wyszukiwarkach połączeń.
+            </div>
+
+            <h2>Warszawa. Zmiany w ruchu dalekobieżnym</h2>
+
+            <p>
+                Warszawa pozostanie jednym z najważniejszych węzłów kolejowych
+                w Polsce. Nowy rozkład jazdy przyniesie jednak zmiany związane
+                między innymi z pracami infrastrukturalnymi w stolicy.
+            </p>
+
+            <h3>Warszawa Wschodnia</h3>
+
+            <p>
+                Pasażerowie powinni zwrócić uwagę na zmiany w trasowaniu części
+                pociągów PKP Intercity. Wybrane składy z kierunku Olsztyna
+                i Trójmiasta mają korzystać ze stacji Warszawa Gdańska
+                zamiast dotychczasowej trasy przez główne dworce Warszawy.
+            </p>
+
+            <h3>Warszawa Centralna i Warszawa Zachodnia</h3>
+
+            <p>
+                Na obu stacjach należy zwrócić uwagę na zmiany w obsłudze
+                wybranych relacji dalekobieżnych. Organizacja ruchu może
+                zmieniać się wraz z kolejnymi etapami prac.
+            </p>
+
+            <h2>Ełk. Powrót pociągów i nowe połączenia</h2>
+
+            <p>
+                Jedną z najciekawszych zapowiedzi dla regionu jest powrót
+                pociągów regionalnych na trasę Ełk – Olecko. Połączenia
+                mają zostać przywrócone po około 14 latach przerwy.
+            </p>
+
+            <p>
+                Pociągi mają obsługiwać między innymi przystanki Chełchy
+                i Kijewo. To ważna zmiana dla mieszkańców okolicznych
+                miejscowości, którzy ponownie zyskają możliwość podróżowania koleją.
+            </p>
+
+            <h3>IC Gryf</h3>
+
+            <p>
+                Wśród zapowiadanych nowości znajduje się również pociąg
+                IC Gryf w relacji Szczecin – Suwałki. Planowana trasa
+                ma obejmować między innymi Ełk, Pisz, Olsztyn, Elbląg
+                i Trójmiasto.
+            </p>
+
+            <h2>Olsztyn Główny. POLREGIO i PKP Intercity</h2>
+
+            <p>
+                Olsztyn Główny pozostanie głównym węzłem kolejowym regionu.
+                Zmiany w nowym rozkładzie obejmą zarówno pociągi regionalne
+                POLREGIO, jak i połączenia dalekobieżne PKP Intercity.
+            </p>
+
+            <p>
+                Szczególną uwagę warto zwrócić na zmiany tras wybranych
+                pociągów w kierunku Warszawy. Część składów może zostać
+                skierowana przez Warszawę Gdańską.
+            </p>
+
+            <h2>Szczytno. Połączenia regionalne</h2>
+
+            <p>
+                Dla pasażerów ze Szczytna najważniejsze będą zmiany
+                w kursowaniu pociągów regionalnych. Warto zwracać uwagę
+                na aktualizacje rozkładu, szczególnie w relacjach
+                do Olsztyna i pozostałych miejscowości regionu.
+            </p>
+
+            <h2>IC Inka wydłużona do Hrubieszowa</h2>
+
+            <p>
+                Jedną z zapowiadanych zmian w ruchu dalekobieżnym jest
+                wydłużenie relacji pociągu IC Inka do Hrubieszowa.
+                Dzięki temu mieszkańcy regionu mają zyskać dodatkową
+                możliwość podróżowania pociągami PKP Intercity.
+            </p>
+
+            <h2>IC Kleeberg pojedzie sezonowo do Zamościa</h2>
+
+            <p>
+                Kolejną nowością ma być sezonowy pociąg IC Kleeberg
+                do Zamościa. Połączenie będzie przeznaczone przede
+                wszystkim dla pasażerów podróżujących w okresie letnim.
+            </p>
+
+            <h2>Dodatkowa para pociągów na linii 219</h2>
+
+            <p>
+                Wśród zapowiadanych zmian znajduje się również dodatkowa
+                para pociągów regionalnych na linii kolejowej nr 219.
+                Zwiększy to liczbę dostępnych połączeń na tej trasie.
+            </p>
+
+            <h2>Co to oznacza dla pasażerów?</h2>
+
+            <p>
+                Rozkład jazdy 2026/2027 przyniesie kilka interesujących
+                zmian dla pasażerów z Mazowsza i Warmii i Mazur.
+                Szczególnie ważne będą nowe relacje dalekobieżne,
+                powrót połączeń Ełk – Olecko oraz zmiany związane
+                z pracami infrastrukturalnymi w Warszawie.
+            </p>
+
+            <p>
+                MMPK będzie informować o kolejnych szczegółach dotyczących
+                nowych połączeń i zmian w rozkładzie jazdy.
+            </p>
+
+            <div class="article-end">
+                Artykuł przygotował: WFK · Mazowiecko-Mazurski Portal Kolejowy
+            </div>
+
+        </div>
+
+    </article>
+
+</div>
+
+<footer>
+    <div class="footer-brand">
+        MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+    </div>
+    Kolejowe informacje. Bez zbędnych przystanków.
+    <br><br>
+    © 2026 MMPK
+</footer>
+
+</body>
+</html>
