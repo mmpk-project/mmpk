@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powrót pociągów do Mrągowa | MMPK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f6f9;
+    color: #202a36;
+    font-family: "DM Sans", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.topbar {
+    background: #102b46;
+    color: #d5e0eb;
+    font-size: 12px;
+    padding: 9px 20px;
+    letter-spacing: .4px;
+}
+
+.topbar-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+header {
+    background: #102b46;
+    color: white;
+    padding: 30px 20px 34px;
+}
+
+.header-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+.brand {
+    font-family: "Manrope", sans-serif;
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.brand span {
+    color: #e6b84b;
+}
+
+.brand-description {
+    color: #c3d2e0;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+nav {
+    background: white;
+    border-bottom: 1px solid #e4e9ef;
+    box-shadow: 0 2px 5px rgba(0,0,0,.03);
+}
+
+.nav-inner {
+    max-width: 1180px;
+    margin: auto;
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+    overflow-x: auto;
+}
+
+.nav-inner a {
+    display: block;
+    padding: 16px 0;
+    color: #34465a;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.nav-inner a:hover,
+.nav-inner a.active {
+    color: #1769aa;
+}
+
+.hero {
+    background: linear-gradient(110deg, #102b46, #194b70);
+    padding: 38px 20px;
+    color: white;
+}
+
+.hero-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+.hero-label {
+    color: #e6b84b;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: 34px;
+    line-height: 1.25;
+    margin: 10px 0;
+}
+
+.hero p {
+    color: #d3e0eb;
+    margin: 0;
+    font-size: 15px;
+}
+
+main {
+    max-width: 1180px;
+    margin: 38px auto;
+    padding: 0 20px;
+}
+
+.article {
+    background: white;
+    border: 1px solid #e8edf2;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.04);
+    padding: 30px;
+}
+
+.article-meta {
+    color: #7b8794;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.article-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.article-content {
+    max-width: 850px;
+    margin: auto;
+}
+
+.article-content h2 {
+    font-family: "Manrope", sans-serif;
+    color: #102b46;
+    font-size: 23px;
+    margin-top: 32px;
+}
+
+.article-content p {
+    margin: 18px 0;
+    font-size: 16px;
+}
+
+.article-content ul {
+    padding-left: 22px;
+}
+
+.article-content li {
+    margin-bottom: 10px;
+}
+
+.info-box {
+    background: #f4f6f9;
+    border-left: 4px solid #1769aa;
+    padding: 18px 20px;
+    border-radius: 6px;
+    margin: 25px 0;
+}
+
+.sources {
+    background: #f4f6f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 35px;
+}
+
+.sources a {
+    color: #1769aa;
+    text-decoration: none;
+}
+
+.sources a:hover {
+    text-decoration: underline;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: #1769aa;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background: #102b46;
+    color: #c3d2e0;
+    padding: 30px 20px;
+    font-size: 13px;
+}
+
+.footer-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+.footer-brand {
+    font-family: "Manrope", sans-serif;
+    color: white;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.footer-brand span {
+    color: #e6b84b;
+}
+
+@media (max-width: 600px) {
+    .brand {
+        font-size: 23px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .article {
+        padding: 20px;
+    }
+
+    .article-content p {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        Kolejowe informacje. Bez zbędnych przystanków.
+    </div>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+        </div>
+        <div class="brand-description">
+            Kolejowe informacje. Bez zbędnych przystanków.
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html">STRONA GŁÓWNA</a>
+        <a href="aktualnosci.html" class="active">AKTUALNOŚCI</a>
+        <a href="mazowsze.html">MAZOWSZE</a>
+        <a href="mazury.html">WARMIA I MAZURY</a>
+        <a href="tabor.html">TABOR</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-label">INFRASTRUKTURA · LINIA 223</div>
+        <h1>Powrót pociągów do Mrągowa coraz bliżej. Ruszają prace na LK223</h1>
+        <p>Po kilkunastu latach przerwy kolej pasażerska ma ponownie dotrzeć do Mrągowa.</p>
+    </div>
+</section>
+
+<main>
+
+<a href="index.html" class="back">← Powrót na stronę główną</a>
+
+<div class="article">
+    <div class="article-content">
+
+        <div class="article-meta">
+            23 listopada 2026 · WFK
+        </div>
+
+        <p>
+            Po kilkunastu latach przerwy pociągi pasażerskie mają ponownie
+            dotrzeć do Mrągowa. PKP Polskie Linie Kolejowe przygotowują
+            infrastrukturę na linii kolejowej nr 223, aby umożliwić wznowienie
+            regularnych połączeń z Czerwonki przez Biskupiec Reszelski.
+            Pierwsze pociągi mają pojawić się w Mrągowie w czerwcu 2027 roku.
+        </p>
+
+        <h2>Prace rozpoczną się od Czerwonki do Biskupca</h2>
+
+        <p>
+            W listopadzie 2026 roku rozpoczęły się prace utrzymaniowe
+            na odcinku Czerwonka – Biskupiec Reszelski. Roboty mają
+            potrwać do końca roku i będą prowadzone z wykorzystaniem
+            specjalistycznego zespołu maszyn DPUS, który pozwoli na
+            poprawę parametrów toru.
+        </p>
+
+        <p>
+            Na tym fragmencie linii dotychczas prowadzony był sporadyczny
+            ruch towarowy. Prace mają poprawić stan infrastruktury
+            i przygotować trasę do przyszłego ruchu pasażerskiego.
+        </p>
+
+        <h2>Biskupiec Reszelski – Mrągowo. Większy zakres robót</h2>
+
+        <p>
+            Znacznie poważniejsze prace przewidziano na odcinku
+            Biskupiec Reszelski – Mrągowo, który od lat pozostaje
+            wyłączony z eksploatacji. Planowana inwestycja obejmuje
+            wymianę nawierzchni torowej, remont obiektów inżynieryjnych,
+            uzupełnienie tłucznia oraz podbicie torów.
+        </p>
+
+        <div class="info-box">
+            <strong>Najważniejsze parametry inwestycji:</strong>
+            <ul>
+                <li>Szacunkowy koszt: około 80 mln zł</li>
+                <li>Docelowa prędkość: do 100 km/h</li>
+                <li>Planowany powrót pociągów: czerwiec 2027 r.</li>
+                <li>Odcinek: Biskupiec Reszelski – Mrągowo</li>
+            </ul>
+        </div>
+
+        <p>
+            Według zapowiedzi PKP PLK roboty mają zostać zakończone
+            w terminie umożliwiającym uruchomienie przewozów pasażerskich
+            od czerwcowej korekty rozkładu jazdy w 2027 roku.
+        </p>
+
+        <h2>Co dalej z linią 223?</h2>
+
+        <p>
+            Przywrócenie ruchu do Mrągowa ma być pierwszym etapem
+            odtwarzania połączeń na dawnej trasie Olsztyn – Czerwonka –
+            Mrągowo – Mikołajki – Orzysz – Ełk. W dalszej perspektywie
+            planowane jest przywrócenie przejezdności kolejnych fragmentów
+            linii, jednak dla odcinków za Mrągowem nie podano jeszcze
+            konkretnych terminów realizacji.
+        </p>
+
+        <p>
+            Kolejnym etapem planów jest odcinek Mrągowo – Mikołajki.
+            Przywrócenie ruchu na dalszej trasie będzie zależeć od
+            finansowania i realizacji kolejnych prac infrastrukturalnych.
+        </p>
+
+        <h2>Powrót kolei po latach</h2>
+
+        <p>
+            Reaktywacja odcinka do Mrągowa może poprawić dostępność
+            transportową miasta i okolicznych miejscowości. Połączenia
+            regionalne mają zapewnić możliwość podróży w kierunku
+            Olsztyna, a także zwiększyć dostępność Mazur dla turystów.
+        </p>
+
+      
+    </div>
+</div>
+
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+        </div>
+        <p>Kolejowe informacje. Bez zbędnych przystanków.</p>
+        <p>© 2026 MMPK · Mazowiecko-Mazurski Portal Kolejowy</p>
+    </div>
+</footer>
+
+</body>
+</html>
