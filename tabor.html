@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Tabor – MMPK</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,8 +34,6 @@
             max-width: 1180px;
             margin: auto;
         }
-
-        .topbar-inner { padding: 0; }
 
         header {
             background: #102b46;
@@ -163,12 +160,6 @@
             margin: 0 0 15px;
         }
 
-        .auth-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
         label {
             display: block;
             color: #34465a;
@@ -197,6 +188,10 @@
         input:focus, textarea:focus {
             outline: 2px solid #b9d8f2;
             border-color: #1769aa;
+        }
+
+        input[type="file"] {
+            padding: 9px;
         }
 
         button {
@@ -311,6 +306,22 @@
             overflow-wrap: anywhere;
         }
 
+        .post-image {
+            display: block;
+            width: 100%;
+            max-height: 260px;
+            object-fit: cover;
+            border-radius: 7px;
+            margin-bottom: 14px;
+            background: #edf0f3;
+        }
+
+        .file-help {
+            color: #8290a0;
+            font-size: 11px;
+            margin: -7px 0 13px;
+        }
+
         .post-meta {
             color: #8290a0;
             font-size: 11px;
@@ -398,7 +409,6 @@
             .hero { padding: 36px 20px; }
             .hero h1 { font-size: 29px; }
             .section-heading h2 { font-size: 20px; }
-            .auth-grid { grid-template-columns: 1fr; }
             .panel { padding: 17px; }
         }
     </style>
@@ -410,9 +420,7 @@
     <div class="topbar-inner">
         NIEZALEŻNY PORTAL INFORMACYJNY O KOLEI
     </div>
-</div>
-
-<header>
+</div><header>
     <div class="header-inner">
         <div class="brand">
             MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
@@ -523,6 +531,16 @@
                 required
             ></textarea>
 
+            <label for="postImage">Zdjęcie pojazdu (opcjonalnie)</label>
+            <input
+                id="postImage"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+            >
+            <div class="file-help">
+                JPG, PNG lub WEBP. Maksymalny rozmiar: 8 MB.
+            </div>
+
             <button type="submit" id="submitPostButton">
                 WYŚLIJ ZGŁOSZENIE
             </button>
@@ -533,6 +551,7 @@
         <h2>Panel moderacji</h2>
         <p>
             Zgłoszenia użytkowników. Zatwierdzaj, odrzucaj lub archiwizuj wpisy.
+            Administratorzy i właściciel mogą również usuwać posty.
         </p>
         <div id="adminMessage" class="message"></div>
     </section>
@@ -570,11 +589,13 @@
 <script>
 /* =========================================
    MMPK - KONFIGURACJA SUPABASE
-   WSTAW SWÓJ PROJECT URL I PUBLISHABLE KEY
 ========================================= */
 
 const SUPABASE_URL = "https://vavmlcgkuaftudiydmcu.supabase.co";
 const SUPABASE_KEY = "sb_publishable_JBe6RSUtkZKcKpP-YLbxTg_RLCEcecc";
+
+const STORAGE_BUCKET = "post-images";
+const MAX_IMAGE_SIZE = 8 * 1024 * 1024;
 
 const db = window.supabase.createClient(
     SUPABASE_URL,
@@ -602,6 +623,10 @@ const myPostsContainer = document.getElementById("myPostsContainer");
 
 let currentUser = null;
 let currentRole = "user";
+
+function isModerator() {
+    return currentRole === "admin" || currentRole === "owner";
+}
 
 /* =========================================
    KOMUNIKATY
@@ -677,7 +702,11 @@ document.getElementById("verifyCodeButton").addEventListener("click", async () =
     button.disabled = false;
 
     if (error) {
-        showMessage(authMessage, "Nie udało się potwierdzić kodu: " + error.message, "error");
+        showMessage(
+            authMessage,
+            "Nie udało się potwierdzić kodu: " + error.message,
+            "error"
+        );
         return;
     }
 
@@ -701,9 +730,7 @@ document.getElementById("logoutButton").addEventListener("click", async () => {
     if (error) {
         alert("Nie udało się wylogować: " + error.message);
     }
-});
-
-/* =========================================
+});/* =========================================
    SESJA I ROLE
 ========================================= */
 
@@ -739,12 +766,11 @@ async function refreshAccount() {
 
 function updateInterface() {
     const loggedIn = !!currentUser;
-    const isAdmin = currentRole === "admin" || currentRole === "owner";
 
     authPanel.classList.toggle("hidden", loggedIn);
     accountPanel.classList.toggle("hidden", !loggedIn);
     addPostPanel.classList.toggle("hidden", !loggedIn);
-    adminPanel.classList.toggle("hidden", !isAdmin);
+    adminPanel.classList.toggle("hidden", !isModerator());
 
     document.getElementById("myPostsSection")
         .classList.toggle("hidden", !loggedIn);
@@ -756,6 +782,64 @@ function updateInterface() {
         document.getElementById("accountRole").textContent =
             currentRole.toUpperCase();
     }
+}
+
+/* =========================================
+   WYSYŁANIE ZDJĘCIA DO STORAGE
+========================================= */
+
+async function uploadPostImage(file) {
+    if (!file) {
+        return {
+            imageUrl: null,
+            imagePath: null
+        };
+    }
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        throw new Error("Dozwolone formaty zdjęć to JPG, PNG i WEBP.");
+    }
+
+    if (file.size > MAX_IMAGE_SIZE) {
+        throw new Error("Zdjęcie jest za duże. Maksymalny rozmiar to 8 MB.");
+    }
+
+    const extension = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp"
+    }[file.type];
+
+    const imagePath =
+        currentUser.id + "/" +
+        crypto.randomUUID() + "." + extension;
+
+    const { error } = await db.storage
+        .from(STORAGE_BUCKET)
+        .upload(imagePath, file, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: file.type
+        });
+
+    if (error) {
+        throw new Error("Nie udało się wysłać zdjęcia: " + error.message);
+    }
+
+    const { data } = db.storage
+        .from(STORAGE_BUCKET)
+        .getPublicUrl(imagePath);
+
+    return {
+        imageUrl: data.publicUrl,
+        imagePath: imagePath
+    };
 }
 
 /* =========================================
@@ -772,50 +856,74 @@ document.getElementById("postForm").addEventListener("submit", async (event) => 
 
     const title = document.getElementById("postTitle").value.trim();
     const description = document.getElementById("postDescription").value.trim();
+    const imageFile = document.getElementById("postImage").files[0];
 
     if (!title || !description) {
-        showMessage(postMessage, "Uzupełnij wszystkie pola.", "error");
+        showMessage(postMessage, "Uzupełnij wszystkie wymagane pola.", "error");
         return;
     }
 
     const button = document.getElementById("submitPostButton");
     button.disabled = true;
 
-    const { error } = await db.from("posts").insert({
-        user_id: currentUser.id,
-        title: title,
-        description: description,
-        status: "pending"
-    });
+    let uploadedImage = {
+        imageUrl: null,
+        imagePath: null
+    };
 
-    button.disabled = false;
+    try {
+        if (imageFile) {
+            showMessage(postMessage, "Wysyłanie zdjęcia...", "");
+            uploadedImage = await uploadPostImage(imageFile);
+        }
 
-    if (error) {
-        showMessage(postMessage, "Błąd dodawania: " + error.message, "error");
-        return;
+        const { error } = await db.from("posts").insert({
+            user_id: currentUser.id,
+            title: title,
+            description: description,
+            image_url: uploadedImage.imageUrl,
+            image_path: uploadedImage.imagePath,
+            status: "pending"
+        });
+
+        if (error) {
+            if (uploadedImage.imagePath) {
+                await db.storage
+                    .from(STORAGE_BUCKET)
+                    .remove([uploadedImage.imagePath]);
+            }
+
+            throw new Error("Błąd dodawania zgłoszenia: " + error.message);
+        }
+
+        document.getElementById("postForm").reset();
+
+        showMessage(
+            postMessage,
+            "Zgłoszenie zostało wysłane do moderacji.",
+            "success"
+        );
+
+        await loadPosts();
+
+    } catch (error) {
+        showMessage(postMessage, error.message, "error");
+    } finally {
+        button.disabled = false;
     }
-
-    document.getElementById("postForm").reset();
-
-    showMessage(
-        postMessage,
-        "Zgłoszenie zostało wysłane do moderacji.",
-        "success"
-    );
-
-    await loadPosts();
 });
 
 /* =========================================
    TWORZENIE KART POJAZDÓW
 ========================================= */
 
-function createPostCard(post, showActions = false, ownPost = false) {
+function createPostCard(post, showActions = false) {
     const card = document.createElement("article");
     card.className = "post-card";
 
     const status = document.createElement("span");
     status.className = "status status-" + post.status;
+
     status.textContent = {
         approved: "Zatwierdzony",
         pending: "Oczekuje",
@@ -833,33 +941,55 @@ function createPostCard(post, showActions = false, ownPost = false) {
     date.className = "post-meta";
     date.textContent = new Date(post.created_at).toLocaleDateString("pl-PL");
 
-    card.append(status, title, description, date);
+    card.appendChild(status);
 
-    if (showActions) {
+    if (post.image_url) {
+        const image = document.createElement("img");
+        image.className = "post-image";
+        image.src = post.image_url;
+        image.alt = "Zdjęcie pojazdu: " + post.title;
+        image.loading = "lazy";
+        card.appendChild(image);
+    }
+
+    card.append(title, description, date);
+
+    if (showActions && isModerator()) {
         const actions = document.createElement("div");
         actions.className = "post-actions";
 
-        const choices = [
-            ["approved", "ZATWIERDŹ", "button"],
-            ["rejected", "ODRZUĆ", "button-danger"],
-            ["archived", "ARCHIWIZUJ", "button-secondary"]
-        ];
+        if (post.status === "pending") {
+            const choices = [
+                ["approved", "ZATWIERDŹ", ""],
+                ["rejected", "ODRZUĆ", "button-danger"],
+                ["archived", "ARCHIWIZUJ", "button-secondary"]
+            ];
 
-        choices.forEach(([statusValue, label, className]) => {
-            const button = document.createElement("button");
-            button.textContent = label;
+            choices.forEach(([statusValue, label, className]) => {
+                const button = document.createElement("button");
+                button.textContent = label;
 
-            if (className !== "button") {
-                button.classList.add(className);
-            }
+                if (className) {
+                    button.classList.add(className);
+                }
 
-            button.addEventListener("click", () => {
-                moderatePost(post, statusValue);
+                button.addEventListener("click", () => {
+                    moderatePost(post, statusValue);
+                });
+
+                actions.appendChild(button);
             });
+        }
 
-            actions.appendChild(button);
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "USUŃ POST";
+        deleteButton.className = "button-danger";
+
+        deleteButton.addEventListener("click", () => {
+            deletePost(post);
         });
 
+        actions.appendChild(deleteButton);
         card.appendChild(actions);
     }
 
@@ -867,6 +997,57 @@ function createPostCard(post, showActions = false, ownPost = false) {
 }
 
 /* =========================================
+   USUWANIE POSTU
+========================================= */
+
+async function deletePost(post) {
+    if (!isModerator() || !currentUser) {
+        return;
+    }
+
+    const confirmed = confirm(
+        'Czy na pewno chcesz usunąć post "' + post.title +
+        '"? Tej operacji nie można cofnąć.'
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+        /*
+         * Najpierw usuwamy zdjęcie ze Storage.
+         * Dopiero potem usuwamy rekord z tabeli posts.
+         */
+
+        if (post.image_path) {
+            const { error: imageError } = await db.storage
+                .from(STORAGE_BUCKET)
+                .remove([post.image_path]);
+
+            if (imageError) {
+                throw new Error(
+                    "Nie udało się usunąć zdjęcia: " + imageError.message
+                );
+            }
+        }
+
+        const { error } = await db
+            .from("posts")
+            .delete()
+            .eq("id", post.id);
+
+        if (error) {
+            throw new Error("Nie udało się usunąć postu: " + error.message);
+        }
+
+        showMessage(adminMessage, "Post został usunięty.", "success");
+        await loadPosts();
+
+    } catch (error) {
+        showMessage(adminMessage, error.message, "error");
+    }
+}/* =========================================
    WCZYTYWANIE BAZY
 ========================================= */
 
@@ -881,13 +1062,18 @@ async function loadPosts() {
     if (error) {
         const empty = document.createElement("div");
         empty.className = "empty";
-        empty.textContent = "Nie udało się pobrać bazy. Sprawdź konfigurację Supabase.";
+        empty.textContent =
+            "Nie udało się pobrać bazy. Sprawdź konfigurację Supabase.";
         postsContainer.appendChild(empty);
         console.error(error);
         return;
     }
 
-    const publicPosts = (data || []).filter(post => post.status === "approved");
+    const allPosts = data || [];
+
+    const publicPosts = allPosts.filter(
+        post => post.status === "approved"
+    );
 
     document.getElementById("postCount").textContent =
         publicPosts.length + " POJAZDÓW";
@@ -895,16 +1081,19 @@ async function loadPosts() {
     if (publicPosts.length === 0) {
         const empty = document.createElement("div");
         empty.className = "empty";
-        empty.textContent = "Baza jest jeszcze pusta. Pierwsze pojazdy pojawią się po zatwierdzeniu zgłoszeń.";
+        empty.textContent =
+            "Baza jest jeszcze pusta. Pierwsze pojazdy pojawią się po zatwierdzeniu zgłoszeń.";
         postsContainer.appendChild(empty);
     } else {
         publicPosts.forEach(post => {
-            postsContainer.appendChild(createPostCard(post));
+            postsContainer.appendChild(
+                createPostCard(post, isModerator())
+            );
         });
     }
 
     if (currentUser) {
-        const ownPosts = (data || []).filter(
+        const ownPosts = allPosts.filter(
             post => post.user_id === currentUser.id
         );
 
@@ -917,21 +1106,36 @@ async function loadPosts() {
             myPostsContainer.appendChild(empty);
         } else {
             ownPosts.forEach(post => {
-                myPostsContainer.appendChild(createPostCard(post));
+                myPostsContainer.appendChild(
+                    createPostCard(post, false)
+                );
             });
         }
 
-        if (currentRole === "admin" || currentRole === "owner") {
-            const pendingPosts = (data || []).filter(
+        if (isModerator()) {
+            const pendingPosts = allPosts.filter(
                 post => post.status === "pending"
+            );
+
+            const otherPosts = allPosts.filter(
+                post =>
+                    post.status !== "approved" &&
+                    post.status !== "pending"
             );
 
             adminMessage.textContent =
                 "Liczba zgłoszeń oczekujących: " + pendingPosts.length;
+
             adminMessage.className = "message";
             adminMessage.style.display = "block";
 
             pendingPosts.forEach(post => {
+                postsContainer.appendChild(
+                    createPostCard(post, true)
+                );
+            });
+
+            otherPosts.forEach(post => {
                 postsContainer.appendChild(
                     createPostCard(post, true)
                 );
@@ -945,7 +1149,7 @@ async function loadPosts() {
 ========================================= */
 
 async function moderatePost(post, newStatus) {
-    if (currentRole !== "admin" && currentRole !== "owner") {
+    if (!isModerator() || !currentUser) {
         return;
     }
 
@@ -955,7 +1159,11 @@ async function moderatePost(post, newStatus) {
         .eq("id", post.id);
 
     if (error) {
-        showMessage(adminMessage, "Błąd moderacji: " + error.message, "error");
+        showMessage(
+            adminMessage,
+            "Błąd moderacji: " + error.message,
+            "error"
+        );
         return;
     }
 
@@ -969,10 +1177,18 @@ async function moderatePost(post, newStatus) {
         });
 
     if (logError) {
-        console.error("Nie udało się zapisać historii moderacji:", logError.message);
+        console.error(
+            "Nie udało się zapisać historii moderacji:",
+            logError.message
+        );
     }
 
-    showMessage(adminMessage, "Zmieniono status zgłoszenia.", "success");
+    showMessage(
+        adminMessage,
+        "Zmieniono status zgłoszenia.",
+        "success"
+    );
+
     await loadPosts();
 }
 
