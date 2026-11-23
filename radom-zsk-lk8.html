@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radom w sieci KDP? ZSK stawia na modernizację LK8 | MMPK</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f9;
+            color: #263445;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .topbar {
+            background: #102b46;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        header {
+            background: white;
+            padding: 28px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e8edf2;
+        }
+
+        .brand {
+            font-family: "Manrope", sans-serif;
+            font-size: 30px;
+            font-weight: 800;
+            color: #102b46;
+        }
+
+        .tagline {
+            color: #657487;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        nav {
+            background: #102b46;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        nav a:hover {
+            color: #e6b84b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .article {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(16,43,70,0.05);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            background: #dce4ec;
+        }
+
+        .article-content {
+            padding: 35px;
+        }
+
+        .category {
+            color: #1769aa;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .date {
+            color: #8290a0;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        h1 {
+            color: #102b46;
+            font-family: "Manrope", sans-serif;
+            font-size: 36px;
+            line-height: 1.3;
+            margin: 18px 0;
+        }
+
+        .lead {
+            color: #526477;
+            font-size: 18px;
+            line-height: 1.8;
+            font-weight: 500;
+            border-left: 4px solid #e6b84b;
+            padding-left: 18px;
+            margin: 25px 0;
+        }
+
+        h2 {
+            font-family: "Manrope", sans-serif;
+            color: #102b46;
+            font-size: 25px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.85;
+            color: #435366;
+        }
+
+        .highlight {
+            background: #f4f6f9;
+            border-left: 4px solid #1769aa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1769aa;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #102b46;
+            color: #c7d3df;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .brand {
+                font-size: 23px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            .article-image {
+                height: 230px;
+            }
+
+            .article-content {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+
+            .lead {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        NIEZALEŻNY PORTAL INFORMACYJNY O KOLEI
+    </div>
+
+    <header>
+        <div class="brand">MAZOWIECKO-MAZURSKI PORTAL KOLEJOWY</div>
+        <div class="tagline">Kolejowe informacje. Bez zbędnych przystanków.</div>
+    </header>
+
+    <nav>
+        <a href="index.html">STRONA GŁÓWNA</a>
+        <a href="aktualnosci.html">AKTUALNOŚCI</a>
+        <a href="mazowsze.html">MAZOWSZE</a>
+        <a href="mazury.html">MAZURY</a>
+        <a href="tabor.html">TABOR</a>
+    </nav>
+
+    <main class="container">
+
+        <a class="back" href="index.html">← POWRÓT NA STRONĘ GŁÓWNĄ</a>
+
+        <article class="article">
+
+            <!-- ZDJĘCIE ARTYKUŁU -->
+            <img
+                class="article-image"
+                src="https://galeria.bankier.pl/p/6/2/cbc8c4f848f4fc-945-560-0-78-1500-899.jpg"
+                alt="Kolej na trasie przez Radom"
+            >
+
+            <div class="article-content">
+
+                <div class="category">INFRASTRUKTURA</div>
+
+                <div class="date">
+                    22 listopada 2026 · WFK
+                </div>
+
+                <h1>
+                    Radom w sieci KDP? ZSK stawia na modernizację LK8
+                </h1>
+
+                <div class="lead">
+                    Zintegrowana Sieć Kolejowa zakłada modernizację linii
+                    kolejowych nr 8, 25 i 71. Wśród proponowanych zmian
+                    znalazło się zwiększenie prędkości na LK8 do 200 km/h
+                    oraz rozwój połączenia Warszawy z Rzeszowem przez Radom.
+                </div>
+
+                <p>
+                    Zintegrowana Sieć Kolejowa (ZSK) przedstawia koncepcję
+                    rozwoju infrastruktury kolejowej, która zakłada wykorzystanie
+                    i modernizację istniejących tras zamiast budowy
+                    całkowicie nowych korytarzy w każdym przypadku.
+                    Szczególne znaczenie mają linie kolejowe nr 8, 25 i 71,
+                    które mogłyby stworzyć ważny szlak komunikacyjny
+                    pomiędzy Warszawą a południowo-wschodnią Polską.
+                </p>
+
+                <p>
+                    Proponowane rozwiązania mają poprawić dostępność kolei
+                    dla mieszkańców Radomia, Skarżyska-Kamiennej,
+                    Starachowic, Ostrowca Świętokrzyskiego, Sandomierza
+                    oraz Tarnobrzega.
+                </p>
+
+                <h2>LK8 z prędkością do 200 km/h</h2>
+
+                <p>
+                    Jednym z najważniejszych elementów koncepcji jest
+                    modernizacja linii kolejowej nr 8 na trasie
+                    Warszawa – Radom – Skarżysko-Kamienna – Kielce.
+                    Plan zakłada przebudowę infrastruktury oraz
+                    poprowadzenie części trasy nowym śladem.
+                </p>
+
+                <p>
+                    Docelowo pociągi miałyby rozwijać prędkość do
+                    200 km/h. Takie parametry pozwoliłyby na poprawę
+                    czasu przejazdu oraz zwiększenie konkurencyjności
+                    kolei w podróżach międzyregionalnych.
+                </p>
+
+                <div class="highlight">
+                    <p>
+                        <strong>200 km/h</strong> – taka prędkość maksymalna
+                        została przewidziana w założeniach modernizacji
+                        wybranych odcinków LK8.
+                    </p>
+                </div>
+
+                <p>
+                    Włączenie Radomia i Kielc do szybszej sieci kolejowej
+                    ma być jednym z efektów proponowanych zmian.
+                    Jednocześnie inwestycje mają uwzględniać zarówno
+                    ruch dalekobieżny, jak i regionalny.
+                </p>
+
+                <h2>LK25 i LK71 mają poprawić dostępność regionu</h2>
+
+                <p>
+                    Plan ZSK obejmuje również modernizację linii
+                    kolejowych nr 25 i 71. Ich rozwój ma poprawić
+                    połączenia kolejowe dla mieszkańców miejscowości
+                    położonych w województwach świętokrzyskim
+                    i podkarpackim.
+                </p>
+
+                <p>
+                    Wśród miast, które mają zyskać na proponowanych
+                    zmianach, wymieniono Starachowice, Ostrowiec
+                    Świętokrzyski, Sandomierz oraz Tarnobrzeg.
+                    Rozwój istniejących tras ma umożliwić poprawę
+                    oferty połączeń bez konieczności budowy
+                    całkowicie nowego korytarza kolejowego.
+                </p>
+
+                <h2>Warszawa – Rzeszów przez Radom w około 3 godziny</h2>
+
+                <p>
+                    Jednym z zakładanych efektów modernizacji
+                    infrastruktury jest skrócenie czasu przejazdu
+                    pomiędzy Warszawą a Rzeszowem.
+                </p>
+
+                <p>
+                    W koncepcji ZSK podróż przez Radom, Skarżysko-Kamienną,
+                    Starachowice, Ostrowiec Świętokrzyski, Sandomierz
+                    i Tarnobrzeg miałaby trwać około 3 godzin.
+                    Trasa ta stanowiłaby alternatywę dla szybszego
+                    korytarza prowadzącego przez Lublin.
+                </p>
+
+                <div class="highlight">
+                    <p>
+                        <strong>Warszawa – Rzeszów:</strong>
+                        około 2 godziny przez Lublin oraz około
+                        3 godziny przez Radom w założeniach ZSK.
+                    </p>
+                </div>
+
+                <p>
+                    Rozwój obu korytarzy miałby umożliwić obsługę
+                    różnych grup pasażerów. Trasa przez Lublin
+                    zapewniałaby krótszy czas podróży, natomiast
+                    wariant przez Radom dawałby bezpośredni dostęp
+                    do większej liczby miast położonych na trasie.
+                </p>
+
+                <h2>Rezygnacja z koncepcji LK84 przez Iłżę i Kunów?</h2>
+
+                <p>
+                    Propozycja ZSK różni się od wcześniejszych
+                    założeń dotyczących budowy linii kolejowej nr 84
+                    w korytarzu Radom – Iłża – Kunów.
+                    W analizowanej koncepcji większy nacisk
+                    położono na modernizację istniejących tras
+                    i budowę wybranych nowych odcinków.
+                </p>
+
+                <p>
+                    Według przedstawionych analiz nowy korytarz
+                    mógłby częściowo dublować istniejącą infrastrukturę.
+                    Alternatywne rozwiązanie ma pozwolić na objęcie
+                    poprawą połączeń większej liczby mieszkańców,
+                    w tym miast posiadających już dostęp do kolei.
+                </p>
+
+                <p>
+                    Wśród argumentów przemawiających za modernizacją
+                    istniejących linii wskazano również możliwość
+                    zachowania obsługi dotychczasowych dworców
+                    oraz ograniczenia kosztów inwestycji.
+                </p>
+
+                <h2>Dwa korytarze do Rzeszowa</h2>
+
+                <p>
+                    ZSK przewiduje rozwój dwóch tras łączących
+                    Warszawę z Rzeszowem. Pierwsza miałaby prowadzić
+                    przez Lublin, natomiast druga przez Radom
+                    i miasta województwa świętokrzyskiego.
+                </p>
+
+                <p>
+                    Oba rozwiązania mają pełnić odmienne funkcje
+                    w krajowej sieci kolejowej. Korytarz przez Lublin
+                    miałby zapewniać krótszy czas przejazdu,
+                    a wariant przez Radom zwiększałby dostępność
+                    transportową miejscowości położonych wzdłuż LK8,
+                    LK25 i LK71.
+                </p>
+
+                <h2>To na razie koncepcja</h2>
+
+                <p>
+                    Założenia Zintegrowanej Sieci Kolejowej
+                    przedstawiają kierunek planowanego rozwoju
+                    infrastruktury, jednak nie oznaczają automatycznego
+                    rozpoczęcia wszystkich inwestycji.
+                    Realizacja poszczególnych modernizacji będzie
+                    zależała od dalszych analiz, decyzji inwestycyjnych,
+                    finansowania oraz przygotowania projektów.
+                </p>
+
+                <p>
+                    Jeśli proponowane rozwiązania zostaną zrealizowane,
+                    Radom może stać się ważniejszym elementem
+                    szybkiego połączenia kolejowego pomiędzy
+                    Warszawą a południowo-wschodnią Polską.
+                </p>
+
+                <p>
+                    <strong>Źródło:</strong>
+                    CPK, Kolejowy Portal.
+                </p>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <strong>MMPK – Mazowiecko-Mazurski Portal Kolejowy</strong>
+        <br><br>
+        Kolejowe informacje. Bez zbędnych przystanków.
+        <br>
+        © 2026 MMPK
+    </footer>
+
+</body>
+</html>
