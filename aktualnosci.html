@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aktualności – MMPK</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f9;
+            color: #202a36;
+            font-family: "DM Sans", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .topbar {
+            background: #102b46;
+            color: #d5e0eb;
+            font-size: 12px;
+            padding: 9px 20px;
+            letter-spacing: 0.4px;
+        }
+
+        .topbar-inner {
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        header {
+            background: #102b46;
+            color: white;
+            padding: 30px 20px 34px;
+        }
+
+        .header-inner {
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .brand {
+            font-family: "Manrope", sans-serif;
+            font-size: 29px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .brand span {
+            color: #e6b84b;
+        }
+
+        .brand-description {
+            margin-top: 7px;
+            color: #c3d2e0;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #e4e9ef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: auto;
+            display: flex;
+            gap: 30px;
+            padding: 0 20px;
+            overflow-x: auto;
+        }
+
+        nav a {
+            display: block;
+            padding: 16px 0;
+            color: #34465a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #1769aa;
+        }
+
+        .hero {
+            background: linear-gradient(110deg, #102b46, #194b70);
+            color: white;
+            padding: 48px 20px;
+        }
+
+        .hero-inner {
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .hero-label {
+            color: #e6b84b;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: "Manrope", sans-serif;
+            font-size: 38px;
+            line-height: 1.2;
+            max-width: 650px;
+            margin: 13px 0;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: #d5e0eb;
+            max-width: 600px;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        main {
+            max-width: 1180px;
+            margin: 38px auto;
+            padding: 0 20px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .section-heading h2 {
+            color: #102b46;
+            font-family: "Manrope", sans-serif;
+            font-size: 23px;
+            margin: 0;
+        }
+
+        .section-heading span {
+            color: #8290a0;
+            font-size: 12px;
+        }
+
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .article-card {
+            display: block;
+            background: white;
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid #e8edf2;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(16,43,70,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 22px rgba(16,43,70,0.11);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 205px;
+            object-fit: cover;
+            display: block;
+            background: #dce4ec;
+        }
+
+        .article-info {
+            padding: 19px;
+        }
+
+        .article-category {
+            color: #1769aa;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .article-date {
+            color: #8290a0;
+            font-size: 12px;
+            margin: 7px 0 10px;
+        }
+
+        .article-title {
+            color: #102b46;
+            font-family: "Manrope", sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .article-description {
+            color: #657487;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #1769aa;
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 14px;
+        }
+
+        footer {
+            background: #102b46;
+            color: #bdcad7;
+            margin-top: 60px;
+            padding: 35px 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .footer-brand {
+            color: white;
+            font-family: "Manrope", sans-serif;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .footer-brand span {
+            color: #e6b84b;
+        }
+
+        @media (max-width: 850px) {
+            .articles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .brand {
+                font-size: 22px;
+            }
+
+            .hero {
+                padding: 36px 20px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .articles {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card img {
+                height: 220px;
+            }
+
+            .section-heading h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        NIEZALEŻNY PORTAL INFORMACYJNY O KOLEI
+    </div>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+        </div>
+
+        <div class="brand-description">
+            Kolejowe informacje. Bez zbędnych przystanków.
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html">STRONA GŁÓWNA</a>
+        <a href="aktualnosci.html" class="active">AKTUALNOŚCI</a>
+        <a href="mazowsze.html">MAZOWSZE</a>
+        <a href="mazury.html">WARMIA I MAZURY</a>
+        <a href="tabor.html">TABOR</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+
+        <div class="hero-label">WIADOMOŚCI MMPK</div>
+
+        <h1>Aktualności kolejowe</h1>
+
+        <p>
+            Najnowsze informacje ze świata kolei.
+            Rozkłady jazdy, inwestycje, tabor i wydarzenia
+            z Mazowsza oraz Warmii i Mazur.
+        </p>
+
+    </div>
+</section>
+
+<main>
+
+    <div class="section-heading">
+        <h2>Wszystkie artykuły</h2>
+        <span>BAZA WIADOMOŚCI MMPK</span>
+    </div>
+
+    <div class="articles">
+
+        <a class="article-card" href="radom-zsk-lk8.html">
+
+            <img
+                src="https://galeria.bankier.pl/p/6/2/cbc8c4f848f4fc-945-560-0-78-1500-899.jpg"
+                alt="Modernizacja linii kolejowej nr 8"
+            >
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Infrastruktura
+                </div>
+
+                <div class="article-date">
+                    23 listopada 2026 · WFK
+                </div>
+
+                <h3 class="article-title">
+                    Radom w sieci KDP? ZSK stawia na modernizację LK8
+                </h3>
+
+                <p class="article-description">
+                    Modernizacja LK8, LK25 i LK71 może zmienić kolejowe
+                    połączenia południowego Mazowsza i regionów sąsiednich.
+                    Warszawa i Rzeszów przez Radom w około 3 godziny?
+                </p>
+
+                <span class="read-more">
+                    CZYTAJ ARTYKUŁ →
+                </span>
+
+            </div>
+        </a>
+
+        <a class="article-card" href="artykul-rj-2026-2027.html">
+
+            <img
+                src="https://cdn.wiadomosci.onet.pl/1/K91k9lLaHR0cDovL29jZG4uZXUvaW1hZ2VzL3B1bHNjbXMvTlRFN01EQV8vNTA2YjhkZTdhOGQwOGUyOThlNjVhMDNhYWQ3MmUwMjIuanBnkpUDzKgAzQgwzQSbkwXNCWDNBOzeAAKhMAehMQQ"
+                alt="Pociąg pasażerski"
+            >
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Rozkład jazdy
+                </div>
+
+                <div class="article-date">
+                    22 listopada 2026 · WFK
+                </div>
+
+                <h3 class="article-title">
+                    Nowy rozkład jazdy 2026/2027. Co zmieni się na Mazowszu i Warmii i Mazurach?
+                </h3>
+
+                <p class="article-description">
+                    Nowe połączenia, powroty pociągów i zmiany w ruchu
+                    dalekobieżnym. Sprawdzamy najważniejsze zapowiedzi.
+                </p>
+
+                <span class="read-more">
+                    CZYTAJ ARTYKUŁ →
+                </span>
+
+            </div>
+        </a>
+
+        <a class="article-card" href="linty-27-polregio.html">
+
+            <img
+                src="https://kolejowyportal.pl/files/Alstom_Lint_27.jpg"
+                alt="Pociąg Alstom LINT 27"
+            >
+
+            <div class="article-info">
+
+                <div class="article-category">
+                    Tabor
+                </div>
+
+                <div class="article-date">
+                    22 listopada 2026 · WFK
+                </div>
+
+                <h3 class="article-title">
+                    LINT-y 27 dla POLREGIO. Zakup, który okazał się błędem
+                </h3>
+
+                <p class="article-description">
+                    Dziewięć używanych pojazdów z Niemiec miało wzmocnić flotę przewoźnika.
+                    Projekt napotkał jednak poważne problemy. POLREGIO przygotowuje
+                    plan ratunkowy dla dziewięciu jednostek.
+                </p>
+
+                <span class="read-more">
+                    CZYTAJ ARTYKUŁ →
+                </span>
+
+            </div>
+        </a>
+
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-brand">
+        MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+    </div>
+
+    Kolejowe informacje. Bez zbędnych przystanków.
+
+    <br><br>
+
+    © 2026 MMPK
+</footer>
+
+</body>
+</html>
