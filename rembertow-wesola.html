@@ -1,1 +1,466 @@
 
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rembertów i Wesoła. Zmiany na kolei | MMPK</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #f4f6f9;
+    color: #202a36;
+    font-family: "DM Sans", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.topbar {
+    background: #102b46;
+    color: #d5e0eb;
+    font-size: 12px;
+    padding: 9px 20px;
+    letter-spacing: .4px;
+}
+
+.topbar-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+header {
+    background: #102b46;
+    color: white;
+    padding: 30px 20px 34px;
+}
+
+.header-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+.brand {
+    font-family: "Manrope", sans-serif;
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.brand span { color: #e6b84b; }
+
+.header-description {
+    color: #c3d2e0;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+nav {
+    background: white;
+    border-bottom: 1px solid #e4e9ef;
+    box-shadow: 0 2px 4px rgba(0,0,0,.03);
+}
+
+.nav-inner {
+    max-width: 1180px;
+    margin: auto;
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+    overflow-x: auto;
+}
+
+nav a {
+    display: block;
+    padding: 16px 0;
+    color: #34465a;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+nav a:hover,
+nav a.active {
+    color: #1769aa;
+}
+
+.hero {
+    background: linear-gradient(110deg, #102b46, #194b70);
+    color: white;
+    padding: 38px 20px;
+}
+
+.hero-inner {
+    max-width: 1180px;
+    margin: auto;
+}
+
+.hero-label {
+    color: #e6b84b;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: 34px;
+    line-height: 1.3;
+    margin: 12px 0;
+}
+
+.hero p {
+    color: #c3d2e0;
+    margin: 0;
+}
+
+main {
+    max-width: 900px;
+    margin: 38px auto;
+    padding: 0 20px;
+}
+
+.article-container {
+    background: white;
+    border: 1px solid #e8edf2;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.04);
+    overflow: hidden;
+}
+
+.article-image {
+    width: 100%;
+    display: block;
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.article-content {
+    padding: 28px;
+}
+
+.article-category {
+    color: #1769aa;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.article-date {
+    color: #7a8795;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.article-content h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: 30px;
+    line-height: 1.35;
+    color: #102b46;
+    margin: 15px 0 22px;
+}
+
+.article-content h2 {
+    font-family: "Manrope", sans-serif;
+    color: #102b46;
+    font-size: 23px;
+    margin-top: 32px;
+}
+
+.article-content p {
+    font-size: 16px;
+    color: #34465a;
+    margin: 16px 0;
+}
+
+.article-content ul {
+    color: #34465a;
+    padding-left: 22px;
+}
+
+.article-content li {
+    margin-bottom: 10px;
+}
+
+.article-source {
+    background: #f4f6f9;
+    border-left: 4px solid #1769aa;
+    padding: 16px 20px;
+    margin-top: 30px;
+    border-radius: 4px;
+}
+
+.article-source h3 {
+    margin: 0 0 10px;
+    font-family: "Manrope", sans-serif;
+    color: #102b46;
+    font-size: 17px;
+}
+
+.article-source a {
+    color: #1769aa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.article-source a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background: #102b46;
+    color: #c3d2e0;
+    padding: 30px 20px;
+    margin-top: 50px;
+}
+
+.footer-inner {
+    max-width: 1180px;
+    margin: auto;
+    font-size: 13px;
+}
+
+.footer-brand {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 18px;
+}
+
+.footer-brand span { color: #e6b84b; }
+
+@media(max-width:600px) {
+    .brand { font-size: 23px; }
+    .hero h1 { font-size: 27px; }
+    .article-content { padding: 20px; }
+    .article-content h1 { font-size: 25px; }
+    .article-content h2 { font-size: 21px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        KOLEJOWE INFORMACJE. BEZ ZBĘDNYCH PRZYSTANKÓW.
+    </div>
+</div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+        </div>
+        <div class="header-description">
+            Aktualności, infrastruktura i tabor kolejowy z Mazowsza oraz Warmii i Mazur.
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html">STRONA GŁÓWNA</a>
+        <a href="aktualnosci.html" class="active">AKTUALNOŚCI</a>
+        <a href="mazowsze.html">MAZOWSZE</a>
+        <a href="mazury.html">WARMIA I MAZURY</a>
+        <a href="tabor.html">TABOR</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-label">INFRASTRUKTURA · WARSZAWA</div>
+        <h1>Rembertów i Wesoła z nowymi tunelami. Kolejne zmiany dla pasażerów</h1>
+        <p>Budowa tuneli drogowych pod torami kolejowymi wchodzi w kolejny etap.</p>
+    </div>
+</section>
+
+<main>
+
+<div class="article-container">
+
+<img
+    class="article-image"
+    src="https://ilostan.forumkolejowe.pl/foto/122630.jpg"
+    alt="Pociąg na linii kolejowej"
+>
+
+<div class="article-content">
+
+<div class="article-category">Infrastruktura</div>
+
+<div class="article-date">
+    24 listopada 2026 · WFK
+</div>
+
+<h1>
+Rembertów i Wesoła z nowymi tunelami. Kolejne zmiany dla pasażerów
+</h1>
+
+<p>
+Budowa tuneli drogowych pod linią kolejową Warszawa–Mińsk Mazowiecki
+w Rembertowie oraz Wesołej nabiera tempa. Wspólne inwestycje PKP Polskich
+Linii Kolejowych oraz miasta Warszawa mają zastąpić przejazdy kolejowo-drogowe,
+poprawić bezpieczeństwo i usprawnić ruch drogowy.
+</p>
+
+<p>
+Postęp prac oznacza jednak kolejne zmiany dla pasażerów kolei.
+W najbliższych tygodniach podróżni będą musieli korzystać z tymczasowych
+peronów i zmienionych dojść do pociągów.
+</p>
+
+<h2>Rembertów: powstaje tunel pod torami</h2>
+
+<p>
+W Rembertowie budowany jest tunel o długości 149 metrów,
+w ciągu ulic Marsa oraz al. gen. Antoniego Chruściela „Montera”.
+Nowy obiekt połączy Stary i Nowy Rembertów, zastępując obecny
+przejazd kolejowo-drogowy.
+</p>
+
+<p>
+Inwestycja obejmuje również przebudowę okolicznego układu drogowego.
+Powstaje nowa ulica Pociskowa, przedłużana jest ulica Bellony,
+a skrzyżowanie ulic Marsa i Cyrulików zostanie przebudowane
+na rondo. W tunelu przewidziano także przystanki autobusowe,
+które mają ułatwić przesiadki między transportem miejskim a koleją.
+</p>
+
+<p>
+Na placu budowy wykonano już ściany szczelinowe, część stropu tunelu,
+przebudowano sieci podziemne oraz wykonano mury oporowe.
+Zbudowano również najazd od strony ulicy Strażackiej
+i połączono nową ulicę Pociskową z ulicą Ilskiego.
+</p>
+
+<h2>Zmiany na stacji Warszawa Rembertów</h2>
+
+<p>
+Kolejnym etapem prac będzie uruchomienie tymczasowych peronów,
+co umożliwi prowadzenie robót pomiędzy torami kolejowymi.
+Od 7 grudnia ruch pociągów zostanie przeniesiony na dwa tory zewnętrzne,
+a dwa tory środkowe zostaną wyłączone z użytkowania.
+</p>
+
+<p>
+Podróżni będą korzystać z dwóch tymczasowych peronów:
+</p>
+
+<ul>
+    <li>Peron tymczasowy nr 1 przy torze nr 1.</li>
+    <li>Peron tymczasowy nr 2 przy torze nr 2.</li>
+</ul>
+
+<p>
+Dostęp do peronów będzie możliwy z obu stron poprzez pochylnie
+zlokalizowane na krańcach konstrukcji. Przejście pomiędzy obiema
+stronami linii nadal będzie odbywać się przez istniejący przejazd.
+Tymczasowe perony zostaną wyposażone w wiaty.
+</p>
+
+<h2>Warszawa Wesoła: przygotowania do kolejnego etapu</h2>
+
+<p>
+Równolegle prowadzona jest budowa tunelu drogowego w ciągu
+ulicy 1 Praskiego Pułku WP w Warszawie Wesołej.
+Obiekt o długości około 180 metrów będzie posiadał dwa pasy ruchu,
+chodnik oraz drogę dla rowerów. Zaplanowano również bezpośrednie
+połączenia z peronami przystanku Warszawa Wesoła.
+</p>
+
+<p>
+Dla osób o ograniczonej mobilności przewidziano windy.
+Inwestycja obejmuje także przebudowę okolicznych ulic,
+w tym Okuniewskiej i Bartosza Głowackiego.
+</p>
+
+<p>
+Na placu budowy wykonano już rozbiórki, przebudowano część
+sieci podziemnych, wykonano ściany szczelinowe oraz zabetonowano
+strop tunelu po północnej stronie torów. Powstał także łącznik
+między ulicą Miłą a ulicą Bartosza Głowackiego.
+</p>
+
+<h2>Zmiany w ruchu kolejowym w Wesołej</h2>
+
+<p>
+W związku z kolejnymi etapami budowy tunelu pasażerów
+czekają czasowe zmiany w organizacji ruchu kolejowego.
+</p>
+
+<ul>
+    <li>
+        <strong>26–30 listopada:</strong> wyłączony zostanie tor nr 2
+        i peron nr 2 w kierunku Rembertowa. Ruch będzie prowadzony
+        dwukierunkowo po torze nr 1.
+    </li>
+    <li>
+        <strong>30 listopada–3 grudnia:</strong> podróżni będą
+        korzystać z peronu nr 1 oraz nowego peronu tymczasowego nr 2.
+    </li>
+    <li>
+        <strong>3–7 grudnia:</strong> wyłączony zostanie tor nr 1
+        i peron nr 1 w kierunku Sulejówka. Ruch będzie prowadzony
+        po torze tymczasowym nr 2.
+    </li>
+</ul>
+
+<p>
+Po zakończeniu przełożeń ruchu uruchomione zostaną dwa tymczasowe
+perony przy nowym układzie torowym, umożliwiając kontynuację
+prac budowlanych przy zachowaniu ruchu pociągów.
+</p>
+
+<h2>Co zyskają mieszkańcy?</h2>
+
+<p>
+Po zakończeniu inwestycji mieszkańcy Rembertowa i Wesołej
+mają zyskać bezkolizyjne przejazdy pod torami kolejowymi,
+sprawniejsze przesiadki oraz poprawę bezpieczeństwa.
+Zniknie konieczność oczekiwania przed zamkniętymi rogatkami,
+co powinno usprawnić ruch zarówno samochodów, jak i autobusów.
+</p>
+
+<p>
+Zakończenie obu inwestycji planowane jest do końca 2027 roku.
+Wartość budowy tunelu w Rembertowie przekracza 134 mln zł,
+natomiast inwestycja w Wesołej kosztuje blisko 94 mln zł.
+</p>
+
+<div class="article-source">
+    <h3>Źródło informacji</h3>
+    <a href="https://www.bip.plk-sa.pl/o-spolce/biuro-prasowe/informacje-prasowe/szczegoly/warszawa-budowa-tuneli-w-rembertowie-i-wesolej-nabiera-tempa-przed-pasazerami-zmiany-w-dojsciu-do-peronow-11811"
+       target="_blank" rel="noopener noreferrer">
+        PKP Polskie Linie Kolejowe – komunikat z 18 listopada 2026
+    </a>
+</div>
+
+</div>
+</div>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            MAZOWIECKO-MAZURSKI <span>PORTAL KOLEJOWY</span>
+        </div>
+        <p>
+            Kolejowe informacje. Bez zbędnych przystanków.
+        </p>
+        <p>
+            © 2026 MMPK – Mazowiecko-Mazurski Portal Kolejowy
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
+
